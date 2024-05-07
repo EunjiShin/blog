@@ -17,9 +17,9 @@ public class CalculationRequestReaderTest {
         CalculationRequest result = calculationRequestReader.read();
 
         // then
-        assertEquals("2", result.getNum1());
+        assertEquals(2, result.getNum1());
         assertEquals("+", result.getOperator());
-        assertEquals("3", result.getNum2());
+        assertEquals(3, result.getNum2());
     }
 
 }
