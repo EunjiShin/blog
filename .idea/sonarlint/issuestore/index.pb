@@ -39,3 +39,6 @@ m
 =tdd/src/main/java/org/example/sample/BadRequestException.java,4/c/4c960ae94d5e93eacf0e251db793efbc33a4ab17
 p
 @tdd/src/test/java/org/example/sample/CalculationRequestTest.java,5/f/5fb57a1ccd37b34d880d84a36049d3d9f5633472
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
