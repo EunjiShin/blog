@@ -1,4 +1,4 @@
-package org.example.sample;
+package org.example.demo.sample;
 
 public class BadRequestException extends RuntimeException {
 

@@ -3,6 +3,8 @@ package org.example.sample;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.example.demo.sample.Calculator;
+import org.example.demo.sample.InvalidOperatorException;
 import org.junit.jupiter.api.Test;
 
 public class CalculatorTest {

@@ -3,6 +3,8 @@ package org.example.sample;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayInputStream;
+import org.example.demo.sample.CalculationRequest;
+import org.example.demo.sample.CalculationRequestReader;
 import org.junit.jupiter.api.Test;
 
 public class CalculationRequestReaderTest {
