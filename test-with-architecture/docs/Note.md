@@ -96,13 +96,13 @@
 
 ### 전통적인 테스트 3분류 
 
-<img src="image/traditional_test.png">
+<img src="../image/traditional_test.png">
 
 - 정의가 모호하다.
 
 ### 구글의 테스트 3분류
 
-<img src="image/google_test.png">
+<img src="../image/google_test.png">
 
 - 소형 테스트 : 항상 결과가 결정적이고 속도가 빠르다. 이게 제일 많을 수록 좋음!
   - 단일 서버 / 단일 프로세스 / 단일 스레드에서 돌아가는 테스트
@@ -156,7 +156,7 @@
 
 > 인스턴스를 만드는 것보다 의존성을 주입하는게 더 좋은 이유는? = new가 하드 코딩이기 때문!
 
-<img src="image/DIP.png">
+<img src="../image/DIP.png">
 
 > Chef가 Beef를 직접 호출하는게 아니라, 인터페이스 Meat를 통해 Beef와 통신하는 구조. 즉 인터페이스와 구현을 분리해 의존성을 역전시킴
 
@@ -330,7 +330,7 @@ class TestClockHolder implements ClockHolder {
 }
 ```
 
-<img src="image/DI_DIP.png">
+<img src="../image/DI_DIP.png">
 
 - 이제 User는 ClockHolder에 의존하고, ClockHolder는 외부에서 주입받으며, ClockHolder은 UserService가 멤버로 들고있다.
 - ClockHolder의 구현체를 두개 만든다

@@ -302,7 +302,7 @@ Temporary Items
 *.icloud
 
 ### Gradle ###
-.gradle
+../.gradle
 **/build/
 !src/**/build/
 
