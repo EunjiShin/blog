@@ -1,7 +1,6 @@
 package org.example.demo.service;
 
 import java.time.Clock;
-import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.example.demo.exception.CertificationCodeNotMatchedException;
@@ -23,28 +22,26 @@ public class UserService {
     private final UserRepository userRepository;
     private final JavaMailSender mailSender;
 
-    public Optional<UserEntity> getById(long id) {
-        return userRepository.findByIdAndStatus(id, UserStatus.ACTIVE);
-    }
-
+    // get은 찾아서 없으면 throw 한다는 의미가 내포되어 있음
+    // 만약 find를 사용했다면, findByIdOrElseThrow 로 없으면 exception 던진다는걸 명시하는게 일반적
     public UserEntity getByEmail(String email) {
         return userRepository.findByEmailAndStatus(email, UserStatus.ACTIVE)
             .orElseThrow(() -> new ResourceNotFoundException("Users", email));
     }
 
-    public UserEntity getByIdOrElseThrow(long id) {
+    public UserEntity getById(long id) {
         return userRepository.findByIdAndStatus(id, UserStatus.ACTIVE)
             .orElseThrow(() -> new ResourceNotFoundException("Users", id));
     }
 
     @Transactional
-    public UserEntity createUser(UserCreateDto userCreateDto) {
+    public UserEntity create(UserCreateDto userCreateDto) {
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(userCreateDto.getEmail());
         userEntity.setNickname(userCreateDto.getNickname());
         userEntity.setAddress(userCreateDto.getAddress());
         userEntity.setStatus(UserStatus.PENDING);
-        userEntity.setCertificationCode(UUID.randomUUID().toString());
+        userEntity.setCertificationCode(UUID.randomUUID().toString()); // FIXME: UUID 랜덤이라 테스트 할 방법이 없음.
         userEntity = userRepository.save(userEntity);
         String certificationUrl = generateCertificationUrl(userEntity);
         sendCertificationEmail(userCreateDto.getEmail(), certificationUrl);
@@ -52,8 +49,8 @@ public class UserService {
     }
 
     @Transactional
-    public UserEntity updateUser(long id, UserUpdateDto userUpdateDto) {
-        UserEntity userEntity = getByIdOrElseThrow(id);
+    public UserEntity update(long id, UserUpdateDto userUpdateDto) {
+        UserEntity userEntity = getById(id);
         userEntity.setNickname(userUpdateDto.getNickname());
         userEntity.setAddress(userUpdateDto.getAddress());
         userEntity = userRepository.save(userEntity);
@@ -75,6 +72,7 @@ public class UserService {
         userEntity.setStatus(UserStatus.ACTIVE);
     }
 
+    // FIXME: 이 메서드를 테스트하고 싶지만 private이라 할 수 없음! 어떻게 해야 할까?
     private void sendCertificationEmail(String email, String certificationUrl) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);

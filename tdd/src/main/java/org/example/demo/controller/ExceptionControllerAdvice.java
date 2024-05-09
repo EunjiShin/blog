@@ -28,8 +28,7 @@ public class ExceptionControllerAdvice {
     @ResponseBody
     @ResponseStatus(FORBIDDEN)
     @ExceptionHandler(CertificationCodeNotMatchedException.class)
-    public String certificationCodeNotMatchedException(
-        CertificationCodeNotMatchedException exception) {
+    public String certificationCodeNotMatchedException(CertificationCodeNotMatchedException exception) {
         return exception.getMessage();
     }
 
